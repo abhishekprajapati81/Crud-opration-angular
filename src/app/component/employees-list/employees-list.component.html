@@ -1,0 +1,32 @@
+<app-employees-add *ngIf="showAdd" (dataAddedEmit)="resetList()"></app-employees-add>
+<div class="container">
+  <div>
+    <button *ngIf="!showAdd" class="btn btn-primary float-end mt-3"  (click)="showAddForm()">Add</button>
+    <button *ngIf="showAdd" class="btn btn-primary float-end mt-3"  (click)="hideForm()">Cancel</button>
+  </div>
+  <div class="table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">city</th>
+          <th scope="col">address</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let employedata of $Employee | async">
+        <tr>
+          <td>
+            &nbsp;
+            <button class="btn btn-danger" (click)="deleteItem(employedata.id ?? 0)">Delete</button>
+          </td>
+          <td>{{employedata.Name}}</td>
+          <td>{{employedata.LastName}}</td>
+          <td>{{employedata.city}}</td>
+          <td>{{employedata.address}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
